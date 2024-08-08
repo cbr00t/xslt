@@ -1,0 +1,49 @@
+:root {
+	--full: 100%;
+	--header-height: 150px;
+	--genel-padding: 10px;
+	--separator-margin-y: 10px;
+}
+html, body, body > *, body > * > * { position: relative }
+html { font-size: 18pt }
+* { font-size: var(--full) }
+input, button.jqx-fill-state-normal, textarea { border-radius: 8px }
+#header, #output { width: var(--full); padding: var(--genel-padding) }
+#header { height: var(--header-height); border: 1px solid #aaa; margin-bottom: var(--separator-margin-y) }
+#header .row { display: flex; flex-flow: col; margin-block-end: 10px }
+#header .row > label { color: #888; width: 90px }
+#header .row button { height: 60px }
+#header .row #transform { width: 500px }
+#header .row #transform.jqx-fill-state-normal { background-color: #f7fff7 }
+#header .row #transform.jqx-fill-state-hover { background-color: #eeffee }
+#header .row #transform.jqx-fill-state-pressed { background-color: #dae2da }
+#progress {
+	width: var(--full); height: 150px; text-align: center;
+	background: whitesmoke;
+	border: 3px solid #aaa;
+	border-radius: 8px
+}
+#progress > * { margin-block-end: 15px; }
+#progress > .etiket { font-weight: bold; font-size: 130%; color: royalblue; padding-top: 1.8%; animation: ani-processing 2s linear infinite }
+#progress.error > .etiket { font-weight: bold !important; font-size: 120%; color: darkred; padding-top: 2.6%; animation: ani-error 3s linear infinite; }
+#progress.error > .progress-bar { display: none }
+@keyframes ani-processing {
+	  0% { color: royalblue; filter: blur(.3px) }
+	 25% { color: #0b62af; filter: blur(.8px) }
+	 50% { color: blue; filter: blur(1px) }
+	 75% { color: #00224d; filter: blur(.2px) }
+	100% { color: royalblue }
+}
+@keyframes ani-error {
+	  0% { color: darkred }
+	 25% { color: orangered; filter: blur(.8px) }
+	 40% { color: red; filter: blur(.3px) }
+	 60% { color: #b72e00 }
+	100% { color: darkred }
+}
+
+#output { height: calc(var(--full) - (var(--header-height) + var(--genel-padding) + var(--separator-margin-y))) }
+
+.disabled { background: #aaa !important; pointer-events: none !important }
+.jqx-hidden { display: none }
+.basic-hidden { visibility: hidden }

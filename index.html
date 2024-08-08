@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<title>XSLT Transform</title>
+<meta name="description" content="<?=$appName?>" />
+<meta name="viewport" content="width=device-width, initial-scale=.8, minimum-scale=.8, maximum-scale=.8, user-scalable=yes" />
+<script src="../skyerp/lib_external/jqx/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="../skyerp/lib_external/jqx/css/jquery-ui.css" />
+<script src="../skyerp/lib_external/jqx/jqx-all.js"></script>
+<script src="../skyerp/lib_external/etc/md5.min.js"></script>
+<script src="../skyerp/lib_external/etc/string.js"></script>
+<script src="../skyerp/lib_external/etc/base64.js"></script>
+<link rel="stylesheet" href="./app.css" />
+<script src="./utils.js"></script><script src="./app.js"></script>
+<script>var app; $(() => { app = new App(); app.run() })</script>
+</head>
+<body>
+	<div id="header">
+		<div class="row">
+			<label for="xml">XML</label>
+			<input id="xml" name="xml" type="file" multiple accept=".xml"></input>
+		</div>
+		<div class="row">
+			<label for="xslt">XSLT</label>
+			<input id="xslt" name="xslt" type="file" accept=".xslt,.xsl"></input>
+		</div>
+		<div class="row">
+			<button id="transform">Görüntü Oluştur</button>
+		</div>
+	</div>
+	<div id="progress" class="jqx-hidden">
+		<div class="etiket"></div>
+		<div class="progress-bar"><progress min="0"/></div>
+	</div>
+</body>
+</html>
