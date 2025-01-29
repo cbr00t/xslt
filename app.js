@@ -37,6 +37,13 @@ class App {
 									(!!validDocTypesSet[elm.querySelector('DocumentType')?.innerHTML] || !excludeTypesSet[elm.querySelector('DocumentType')?.innerHTML])
 								)?.querySelector('EmbeddedDocumentBinaryObject')?.textContent
 				}
+				if (!xsltData) {
+                    xxsltData = Array.from(xmlList[0].documentElement.querySelectorAll('AdditionalDocumentReference'))
+								?.find(elm =>
+									!!elm.querySelector(`EmbeddedDocumentBinaryObject[mimeCode = "application/soap+xml"]`) &&
+									(!!validDocTypesSet[elm.querySelector('DocumentType')?.innerHTML] || !excludeTypesSet[elm.querySelector('DocumentType')?.innerHTML])
+								)?.querySelector('EmbeddedDocumentBinaryObject')?.textContent
+				}
 			}
 			if (!xsltData?.startsWith('<?xml')) { xsltData = Base64.decode(xsltData) }
 			const xslt = $.parseXML(xsltData), xsltProcessor = new XSLTProcessor(); xsltProcessor.importStylesheet(xslt);
