@@ -31,14 +31,14 @@ class App {
 									(!!validDocTypesSet[elm.querySelector('DocumentType')?.innerHTML] || !excludeTypesSet[elm.querySelector('DocumentType')?.innerHTML])
 								)?.querySelector('EmbeddedDocumentBinaryObject')?.textContent;
                 if (!xsltData) {
-                    xxsltData = Array.from(xmlList[0].documentElement.querySelectorAll('AdditionalDocumentReference'))
+                    xsltData = Array.from(xmlList[0].documentElement.querySelectorAll('AdditionalDocumentReference'))
 								?.find(elm =>
 									!!elm.querySelector(`EmbeddedDocumentBinaryObject[mimeCode = "application/CSTAdata+xml"]`) &&
 									(!!validDocTypesSet[elm.querySelector('DocumentType')?.innerHTML] || !excludeTypesSet[elm.querySelector('DocumentType')?.innerHTML])
 								)?.querySelector('EmbeddedDocumentBinaryObject')?.textContent
 				}
 				if (!xsltData) {
-                    xxsltData = Array.from(xmlList[0].documentElement.querySelectorAll('AdditionalDocumentReference'))
+                    xsltData = Array.from(xmlList[0].documentElement.querySelectorAll('AdditionalDocumentReference'))
 								?.find(elm =>
 									!!elm.querySelector(`EmbeddedDocumentBinaryObject[mimeCode = "application/soap+xml"]`) &&
 									(!!validDocTypesSet[elm.querySelector('DocumentType')?.innerHTML] || !excludeTypesSet[elm.querySelector('DocumentType')?.innerHTML])
