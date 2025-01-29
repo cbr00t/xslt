@@ -25,11 +25,18 @@ class App {
 			const xmlList = xmlDatas.map(data => $.parseXML(data)); let xsltData = (files.xslt.dataList || [])[0];
 			if (!xsltData) {
 				const validDocTypesSet = asSet(['XSLT', 'xslt', 'xsltfile']), excludeTypesSet = asSet(['qrcode', 'QRCODE']);
-				xsltData = Array.from(xmlList[0].documentElement.querySelectorAll(`AdditionalDocumentReference`))
+				xsltData = Array.from(xmlList[0].documentElement.querySelectorAll('AdditionalDocumentReference'))
 								?.find(elm =>
 									!!elm.querySelector(`EmbeddedDocumentBinaryObject[mimeCode = "application/xml"]`) &&
 									(!!validDocTypesSet[elm.querySelector('DocumentType')?.innerHTML] || !excludeTypesSet[elm.querySelector('DocumentType')?.innerHTML])
 								)?.querySelector('EmbeddedDocumentBinaryObject')?.textContent;
+                if (!xsltData) {
+                    xxsltData = Array.from(xmlList[0].documentElement.querySelectorAll('AdditionalDocumentReference'))
+								?.find(elm =>
+									!!elm.querySelector(`EmbeddedDocumentBinaryObject[mimeCode = "application/CSTAdata+xml"]`) &&
+									(!!validDocTypesSet[elm.querySelector('DocumentType')?.innerHTML] || !excludeTypesSet[elm.querySelector('DocumentType')?.innerHTML])
+								)?.querySelector('EmbeddedDocumentBinaryObject')?.textContent
+				}
 			}
 			if (!xsltData?.startsWith('<?xml')) { xsltData = Base64.decode(xsltData) }
 			const xslt = $.parseXML(xsltData), xsltProcessor = new XSLTProcessor(); xsltProcessor.importStylesheet(xslt);
